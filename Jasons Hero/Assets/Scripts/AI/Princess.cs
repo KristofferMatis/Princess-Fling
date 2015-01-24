@@ -3,7 +3,14 @@ using System.Collections;
 
 public class Princess : Throwable
 {
+	Thrower LastThrower;
+
 	const float SPEED = 75.0f;
+	public override Thrower BeingCarriedBy
+	{
+		get { return BeingCarriedBy; }
+		set { m_BeingCarriedBy = value; LastThrower = value;}
+	}
 
     protected override void nope()
     {
@@ -20,4 +27,9 @@ public class Princess : Throwable
             m_Controller.SimpleMove(Vector3.zero);
         }
     }
+
+	public Thrower getLastThrower ()
+	{
+		return  LastThrower;
+	}
 }
