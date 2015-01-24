@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputManager : MonoBehaviour {
+public static class InputManager
+{
+    public static bool getSwitchLeft(Players player)
+    {
+        return GamepadInput.GamePad.GetButton(GamepadInput.GamePad.Button.LeftShoulder, PlayersInfo.getGamepad(player));
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
+
+    public static bool getSwitchLeftDown(Players player)
+    {
+        return false;
+    }
+
+    public static bool getSwitchLeftUp(Players player)
+    {
+        return false;
+    }
 }
