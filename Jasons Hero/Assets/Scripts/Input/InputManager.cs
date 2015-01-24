@@ -54,6 +54,22 @@ public static class InputManager
 
     //==============================================================================================
 
+    public static bool getStart(Players player)
+    {
+        return GamepadInput.GamePad.GetButton(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad(player));
+    }
+
+    public static bool getStartDown(Players player)
+    {
+        return GamepadInput.GamePad.GetButtonDown(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad(player));
+    }
+
+    public static bool getStartUp(Players player)
+    {
+        return GamepadInput.GamePad.GetButtonUp(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad(player));
+    }
+
+    //==============================================================================================
 
     public static Vector2 getSwitchLeftStick(Players player)
     {
