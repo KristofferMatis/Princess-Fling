@@ -59,7 +59,6 @@ public class CharacterMovement : MonoBehaviour
                 {
                     m_Velocity.y += m_CurrentFloatPower * Time.deltaTime;
                     m_CurrentFloatPower -= FLOAT_POWER_LOSS * Time.deltaTime;
-                    Debug.Log(m_CurrentFloatPower);
                 }
             }
 
