@@ -5,7 +5,12 @@ public class CameraController : MonoBehaviour {
 
 	//Followed enemy
 	public Transform m_FollowedTransform;
-	
+
+	void Start ()
+	{
+		setPosition(m_FollowedTransform.position);
+	}
+
 	//Update
 	void Update ()
 	{
@@ -23,12 +28,5 @@ public class CameraController : MonoBehaviour {
 	public void setPosition(Vector3 pos)
 	{
 		transform.position = new Vector3 (pos.x, pos.y, -10.0f);
-	}
-
-	//Set a new transform to follow
-	public void setFollowedTransform (Transform followed)
-	{
-		m_FollowedTransform = followed;
-		setPosition(followed.position);
 	}
 }
