@@ -3,13 +3,12 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	//list of enemies
+	//enemies controlled by each player
+
+
+	public static Transform getEnemyTransformControlledByPlayer(Players playerIndex)
+	{
+		return GameObject.CreatePrimitive (PrimitiveType.Cube).transform;
 	}
 }
