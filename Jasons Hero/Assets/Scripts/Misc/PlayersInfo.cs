@@ -25,12 +25,4 @@ public class PlayersInfo : MonoBehaviour
 
         return GamepadInput.GamePad.Index.Any;
 	}
-
-	public static void AddPlayer(EnemyController enemy)
-	{
-		Player newPlayer;
-		newPlayer.player = (Players)(m_Players.Count);
-		newPlayer.gamepad = GamepadInput.GamePad.Index.Any;
-		m_Players.Add (newPlayer);
-	}
 }
