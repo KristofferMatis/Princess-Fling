@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public static class InputManager
 {
@@ -67,6 +68,53 @@ public static class InputManager
     public static bool getStartUp(Players player)
     {
         return GamepadInput.GamePad.GetButtonUp(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad(player));
+    }
+
+    //::::::
+    static List<Players> playersWhoUsedInput = new List<Players>();
+    public static Players[] getStart()
+    {
+        playersWhoUsedInput.Clear();
+
+        for (int i = 0; i < (int)Players.count; i++ )
+        {
+            if(GamepadInput.GamePad.GetButton(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad((Players)i)))
+            {
+                playersWhoUsedInput.Add((Players)i);
+            }
+        }
+
+        return playersWhoUsedInput.ToArray();
+    }
+
+    public static Players[] getStartDown()
+    {
+        playersWhoUsedInput.Clear();
+
+        for (int i = 0; i < (int)Players.count; i++)
+        {
+            if (GamepadInput.GamePad.GetButtonDown(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad((Players)i)))
+            {
+                playersWhoUsedInput.Add((Players)i);
+            }
+        }
+
+        return playersWhoUsedInput.ToArray();
+    }
+
+    public static Players[] getStartUp()
+    {
+        playersWhoUsedInput.Clear();
+
+        for (int i = 0; i < (int)Players.count; i++)
+        {
+            if (GamepadInput.GamePad.GetButtonUp(GamepadInput.GamePad.Button.Start, PlayersInfo.getGamepad((Players)i)))
+            {
+                playersWhoUsedInput.Add((Players)i);
+            }
+        }
+
+        return playersWhoUsedInput.ToArray();
     }
 
     //==============================================================================================

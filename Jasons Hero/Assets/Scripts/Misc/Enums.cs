@@ -7,6 +7,7 @@ public enum Players
 	PlayerOne,
 	PlayerTwo,
 	PlayerThree,
-	PlayerFour
+	PlayerFour,
+    count
 };
 
