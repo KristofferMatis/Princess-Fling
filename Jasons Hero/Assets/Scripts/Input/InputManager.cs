@@ -38,19 +38,36 @@ public static class InputManager
 
     //==============================================================================================
 
-    public static bool getAbility(Players player)
+    public static bool getJump(Players player)
     {
         return GamepadInput.GamePad.GetButton(GamepadInput.GamePad.Button.A, PlayersInfo.getGamepad(player));
     }
 
-    public static bool getAbilityDown(Players player)
+    public static bool getJumpDown(Players player)
     {
         return GamepadInput.GamePad.GetButtonDown(GamepadInput.GamePad.Button.A, PlayersInfo.getGamepad(player));
     }
 
-    public static bool getAbilityUp(Players player)
+    public static bool getJumpUp(Players player)
     {
         return GamepadInput.GamePad.GetButtonUp(GamepadInput.GamePad.Button.A, PlayersInfo.getGamepad(player));
+    }
+
+    //==============================================================================================
+
+    public static bool getThrow(Players player)
+    {
+        return GamepadInput.GamePad.GetButton(GamepadInput.GamePad.Button.X, PlayersInfo.getGamepad(player));
+    }
+
+    public static bool getThrowDown(Players player)
+    {
+        return GamepadInput.GamePad.GetButtonDown(GamepadInput.GamePad.Button.X, PlayersInfo.getGamepad(player));
+    }
+
+    public static bool getThrowUp(Players player)
+    {
+        return GamepadInput.GamePad.GetButtonUp(GamepadInput.GamePad.Button.X, PlayersInfo.getGamepad(player));
     }
 
     //==============================================================================================
@@ -119,7 +136,7 @@ public static class InputManager
 
     //==============================================================================================
 
-    public static Vector2 getSwitchLeftStick(Players player)
+    public static Vector2 getLeftStick(Players player)
     {
         return GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.LeftStick, PlayersInfo.getGamepad(player));
     }

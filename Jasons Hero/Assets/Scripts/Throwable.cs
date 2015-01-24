@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class Throwable : MonoBehaviour 
 {
-	protected enum states
+	public enum states
 	{
 		airborn,
 		carry,
@@ -16,7 +16,7 @@ public class Throwable : MonoBehaviour
 	protected states m_State = states.nope;
 
 
-    Vector2 m_Velocity = Vector2.zero;
+    protected Vector2 m_Velocity = Vector2.zero;
     public Vector2 Velocity
     {
         get { return m_Velocity; }
@@ -28,6 +28,24 @@ public class Throwable : MonoBehaviour
 
     const string DEFAULT_LAYER = "Throwable";
     const string AIRBORNE_LAYER = "Airborne";
+
+    public bool isThrowable
+    {
+        get 
+        {
+            if (m_State == states.airborn || m_State == states.nope)
+                return true;
+
+            return false;
+        }
+    }
+
+    protected Thrower m_BeingCarriedBy = null;
+    public Thrower BeingCarriedBy
+    {
+        get { return BeingCarriedBy; }
+        set { m_BeingCarriedBy = value; }
+    }
 
 	// Use this for initialization
 	protected virtual void Start () 
@@ -57,6 +75,7 @@ public class Throwable : MonoBehaviour
     protected virtual void airBorne()
     {
         updateVelocity();
+        m_Controller.Move(m_Velocity);
     }
 
     protected virtual void carry()
@@ -74,7 +93,7 @@ public class Throwable : MonoBehaviour
         m_Velocity.y -= i_FallSpeed * Time.deltaTime;
     }
 
-	protected virtual void changeState(states state)
+	public virtual void changeState(states state)
 	{
 		onStateChange ();
 

@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(CharacterController))]
-public class CharacterMovement : MonoBehaviour 
+public class CharacterMovement : Throwable 
 {
-
-	CharacterController m_Controller;
-
-	Vector3 m_Velocity = new Vector3 (0.0f, -0.1f, 0.0f);
-
 	const float WALKING_SPEED = 10.0f;
     const float JUMPING_SPEED = 0.2f;
     const float AIRBORNE_CONTROL = 7.0f;
@@ -18,25 +12,47 @@ public class CharacterMovement : MonoBehaviour
     const float FLOAT_POWER_LOSS = 0.9f;
     float m_CurrentFloatPower = FLOAT_POWER;
 
-
 	public Players m_Player;
 
     bool m_IsHoldingA = false;
 
+    const float CARRY_TIME = 1.0f;
+    float m_Timer = 0.0f;
 
-	// Use this for initialization
-	void Start ()
-	{
-		m_Controller = GetComponent<CharacterController> ();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
+    // Use this for initialization
+    protected override void Start()
+    {
+        m_Controller = gameObject.GetComponent<CharacterController>();
+    }
+
+    protected override void carry()
+    {
+        if(m_Timer > 0.0f)
+        {
+            m_Timer -= Time.deltaTime;
+            return;
+        }
+
+        m_BeingCarriedBy.drop();
+    }
+
+    protected override void airBorne()
+    {
+        nope();
+    }
+
+    protected override void onCarry()
+    {
+        base.onCarry();
+        m_Timer = CARRY_TIME;
+    }
+
+    protected override void nope()
+    {
 		if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f))
 		{
 			//Hit jump
-			if (InputManager.getAbilityDown(m_Player))
+			if (InputManager.getJumpDown(m_Player))
 			{
 				m_Velocity.y = JUMPING_SPEED;
                 m_IsHoldingA = true;
@@ -44,14 +60,14 @@ public class CharacterMovement : MonoBehaviour
 			}
 
 			//Walk
-			m_Velocity.x = InputManager.getSwitchLeftStick(m_Player).x * Time.deltaTime * WALKING_SPEED;
+			m_Velocity.x = InputManager.getLeftStick(m_Player).x * Time.deltaTime * WALKING_SPEED;
 		}
 		//Airborne
 		else
 		{
             if(m_IsHoldingA)
             {
-                if(InputManager.getAbilityUp(m_Player) || m_Velocity.y < 0.0f)
+                if(InputManager.getJumpUp(m_Player) || m_Velocity.y < 0.0f)
                 {
                     m_IsHoldingA = false;
                     m_CurrentFloatPower = FLOAT_POWER;
@@ -64,7 +80,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
 			m_Velocity.y -= GRAVITY * Time.deltaTime;
-			m_Velocity.x = InputManager.getSwitchLeftStick(m_Player).x * Time.deltaTime * AIRBORNE_CONTROL;
+			m_Velocity.x = InputManager.getLeftStick(m_Player).x * Time.deltaTime * AIRBORNE_CONTROL;
 		}
 
 		m_Controller.Move (m_Velocity);
