@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour {
 	//Lerps the camera to the followed enemy
 	void updatePosition ()
 	{
-		Vector3 pos = Vector3.Lerp (transform.position, m_FollowedTransform.position, 0.1f);
+		Vector3 pos = Vector3.Lerp (transform.position, m_FollowedTransform.position, 0.5f * Time.deltaTime);
 		setPosition (pos);
 	}
 
