@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(CharacterMovement))]
 public class Thrower : MonoBehaviour
 {
 	public Players i_Player;
@@ -13,10 +14,13 @@ public class Thrower : MonoBehaviour
     const float THROW_POWER = 0.5f;
     const float IGNORE_COLLISION_PERIOD = 0.25f;
 
+    CharacterMovement m_Movement;
+
     // Use this for initialization
     void Start()
     {
         m_Detector = GetComponentInChildren<ThrowableDetector>();
+        m_Movement = GetComponent<CharacterMovement>();
     }
 
     // Update is called once per frame

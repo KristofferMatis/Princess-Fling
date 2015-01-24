@@ -30,15 +30,15 @@ public class CharacterMovement : Throwable
         m_BeingCarriedBy.drop();
     }
 
-    protected override void airBorne()
-    {
-        nope();
-    }
-
     protected override void onCarry()
     {
         base.onCarry();
         m_Timer = CARRY_TIME;
+    }
+
+    protected override void onAirborn()
+    {
+        base.onAirborn();
     }
 
     protected override void nope()
