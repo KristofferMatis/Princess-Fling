@@ -3,14 +3,37 @@ using System.Collections;
 
 public class CreateCameras : MonoBehaviour
 {
+	public int m_PlayerCount = 4;
+
 	void Start ()
 	{
-		Transform[] cams = new Transform[4];
-		for (int i = 0; i < cams.Length; i++)
+		setUp (m_PlayerCount);
+	}
+
+	public void setUp (int playerCount)
+	{
+
+		setUpCameras (setUpPlayers (setUpEnemies ()));
+	}
+
+	//Spawn enemies
+	public EnemyController[] setUpEnemies ()
+	{
+		return new EnemyController[4];
+	}
+
+	//Spawn players and return a number of transforms
+	public Transform[] setUpPlayers (EnemyController[] enemyControllers)
+	{
+		Transform[] playerTransforms = new Transform[m_PlayerCount];
+
+		for (int i = 0; i < playerTransforms.Length; i++)
 		{
-			cams[i] = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+
+			playerTransforms[i] = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+			PlayersInfo.AddPlayer(enemyControllers[i]);
 		}
-		setUpCameras (cams);
+		return playerTransforms;
 	}
 
 
@@ -26,6 +49,7 @@ public class CreateCameras : MonoBehaviour
 
 			//Tell the camera what transform to follow
 			camerasCreated[i].GetComponent<CameraController>().setFollowedTransform(initialTransforms[i]);
+
 		}
 
 		//Set up camera rectangles

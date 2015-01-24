@@ -37,17 +37,17 @@ public static class InputManager
 
     //==============================================================================================
 
-    public static bool getSwitchAbility(Players player)
+    public static bool getAbility(Players player)
     {
         return GamepadInput.GamePad.GetButton(GamepadInput.GamePad.Button.A, PlayersInfo.getGamepad(player));
     }
 
-    public static bool getSwitchRightAbility(Players player)
+    public static bool getAbilityDown(Players player)
     {
         return GamepadInput.GamePad.GetButtonDown(GamepadInput.GamePad.Button.A, PlayersInfo.getGamepad(player));
     }
 
-    public static bool getSwitchRightAbility(Players player)
+    public static bool getAbilityUp(Players player)
     {
         return GamepadInput.GamePad.GetButtonUp(GamepadInput.GamePad.Button.A, PlayersInfo.getGamepad(player));
     }

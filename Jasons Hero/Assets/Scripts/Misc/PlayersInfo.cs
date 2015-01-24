@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public class PlayersInfo : MonoBehaviour 
 {
-	struct players
+	public struct Player
 	{
         public Players player;
         public GamepadInput.GamePad.Index gamepad;
 	};
 
-    static List<players> m_Players = new List<players>();
+    static List<Player> m_Players = new List<Player>();
 
-
+	//
     public static GamepadInput.GamePad.Index getGamepad(Players player)
 	{
         for(int i = 0; i < m_Players.Count; i++)
@@ -24,5 +24,13 @@ public class PlayersInfo : MonoBehaviour
         }
 
         return GamepadInput.GamePad.Index.Any;
+	}
+
+	public static void AddPlayer(EnemyController enemy)
+	{
+		Player newPlayer;
+		newPlayer.player = (Players)(m_Players.Count);
+		newPlayer.gamepad = GamepadInput.GamePad.Index.Any;
+		m_Players.Add (newPlayer);
 	}
 }
