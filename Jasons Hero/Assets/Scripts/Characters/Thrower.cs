@@ -16,7 +16,6 @@ public class Thrower : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
         m_Detector = GetComponentInChildren<ThrowableDetector>();
     }
 
@@ -41,6 +40,9 @@ public class Thrower : MonoBehaviour
 
     public void drop()
     {
+		if (m_BeingCarried == null)
+			return;
+
         m_BeingCarried.changeState(Throwable.states.nope);
         m_BeingCarried.transform.parent = null;
 
@@ -57,7 +59,10 @@ public class Thrower : MonoBehaviour
 
         if (m_Detector.ThrowablesInRange.Count == 1)
         {
-            onPickUp(m_Detector.ThrowablesInRange[0]);            
+			if(m_Detector.ThrowablesInRange[0].isThrowable)
+			{
+            	onPickUp(m_Detector.ThrowablesInRange[0]);   
+			}
             return;
         }
 
@@ -66,12 +71,21 @@ public class Thrower : MonoBehaviour
             Princess temp = m_Detector.ThrowablesInRange[i] as Princess;
             if(temp != null)
             {
-                onPickUp(temp);
+				if(m_Detector.ThrowablesInRange[i].isThrowable)
+				{
+                	onPickUp(temp);
+				}
                 return;
             }
         }
 
-        onPickUp(m_Detector.ThrowablesInRange[0]);
+		for(int i =0; i < m_Detector.ThrowablesInRange.Count; i++)
+		{
+			if(m_Detector.ThrowablesInRange[i].isThrowable)
+			{
+       	 		onPickUp(m_Detector.ThrowablesInRange[i]);
+			}
+		}
     }
 
     void onPickUp(Throwable pickedUp)
@@ -79,6 +93,7 @@ public class Thrower : MonoBehaviour
         m_BeingCarried = pickedUp;
         m_BeingCarried.changeState(Throwable.states.carry);
         m_BeingCarried.transform.parent = transform;
+        m_BeingCarried.BeingCarriedBy = this;
     }
 
     void onThrow()
@@ -90,6 +105,7 @@ public class Thrower : MonoBehaviour
         StartCoroutine(tempIgnoreCollision(m_BeingCarried));
 
         m_Detector.removeThrowable(m_BeingCarried);
+
         m_BeingCarried.BeingCarriedBy = null;
 
         m_BeingCarried = null;
@@ -104,7 +120,8 @@ public class Thrower : MonoBehaviour
         {
             for (int c = 0; c < collidersMine.Length; c++)
             {
-                Physics.IgnoreCollision(collidersMine[i], collidersThiers[c], true);
+				if(collidersMine[i].enabled == true && collidersThiers[c].enabled == true)
+                	Physics.IgnoreCollision(collidersMine[i], collidersThiers[c], true);
             }
         }
 
@@ -114,7 +131,8 @@ public class Thrower : MonoBehaviour
         {
             for (int c = 0; c < collidersMine.Length; c++)
             {
-                Physics.IgnoreCollision(collidersMine[i], collidersThiers[c], false);
+				if(collidersMine[i].enabled == true && collidersThiers[c].enabled == true)
+                	Physics.IgnoreCollision(collidersMine[i], collidersThiers[c], false);
             }
         }
     }

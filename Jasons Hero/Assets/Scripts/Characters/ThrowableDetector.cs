@@ -14,7 +14,7 @@ public class ThrowableDetector : MonoBehaviour
 	
 	void OnTriggerEnter(Collider other)
 	{
-        if (other.gameObject.layer == LayerMask.NameToLayer(THROWABLE))
+        if (other.gameObject.tag == "Throwable" && other.gameObject != transform.parent.gameObject)
 		{
             Throwable temp = other.GetComponent<Throwable>();
             if (!m_ThrowablesInRange.Contains(temp))
@@ -38,6 +38,14 @@ public class ThrowableDetector : MonoBehaviour
         if (m_ThrowablesInRange.Contains(thrown))
         {
             m_ThrowablesInRange.Remove(thrown);
+        }
+    }
+
+    public void addThrowable(Throwable thrown)
+    {
+        if (!m_ThrowablesInRange.Contains(thrown))
+        {
+            m_ThrowablesInRange.Add(thrown);
         }
     }
 }

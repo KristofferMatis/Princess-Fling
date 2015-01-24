@@ -24,4 +24,9 @@ public class PlayersInfo : MonoBehaviour
         }
         return GamepadInput.GamePad.Index.Any;
 	}
+
+    public static void addPlayer(Player player)
+    {
+        m_Players.Add(player);
+    }
 }

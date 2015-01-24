@@ -19,12 +19,6 @@ public class CharacterMovement : Throwable
     const float CARRY_TIME = 1.0f;
     float m_Timer = 0.0f;
 
-    // Use this for initialization
-    protected override void Start()
-    {
-        m_Controller = gameObject.GetComponent<CharacterController>();
-    }
-
     protected override void carry()
     {
         if(m_Timer > 0.0f)
