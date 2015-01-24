@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera : MonoBehaviour {
+public class CameraController : MonoBehaviour {
 
 	//Followed enemy
 	public Transform m_FollowedTransform;
@@ -29,5 +29,6 @@ public class Camera : MonoBehaviour {
 	public void setFollowedTransform (Transform followed)
 	{
 		m_FollowedTransform = followed;
+		setPosition(followed.position);
 	}
 }
