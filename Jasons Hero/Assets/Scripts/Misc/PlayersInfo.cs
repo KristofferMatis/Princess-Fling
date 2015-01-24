@@ -22,7 +22,6 @@ public class PlayersInfo : MonoBehaviour
                 return m_Players[i].gamepad;
             }
         }
-
         return GamepadInput.GamePad.Index.Any;
 	}
 }
