@@ -3,8 +3,6 @@ using System.Collections;
 
 public class KillZone : MonoBehaviour {
 
-	const float AMOUNT_TO_MOVE_OVER = 5.0f;
-
 	void OnTriggerEnter (Collider other)
 	{
 		Respawner respawner = other.GetComponent<Respawner>();
@@ -18,11 +16,11 @@ public class KillZone : MonoBehaviour {
 
 				if (princess.getLastThrower().i_Player == Players.PlayerOne)
 				{
-					respawner.Kill(-AMOUNT_TO_MOVE_OVER);
+					respawner.Kill(-Respawner.AMOUNT_TO_MOVE_OVER);
 				}
 				else
 				{
-					respawner.Kill(AMOUNT_TO_MOVE_OVER);
+					respawner.Kill(Respawner.AMOUNT_TO_MOVE_OVER);
 				}
 				return;
 			}

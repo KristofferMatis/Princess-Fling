@@ -5,6 +5,7 @@ public class CameraController : MonoBehaviour {
 
 	//Followed enemy
 	public Transform m_FollowedTransform;
+	const float LERP_SPEED_PRE_DELTA = 1.0f;
 
 	void Start ()
 	{
@@ -20,7 +21,7 @@ public class CameraController : MonoBehaviour {
 	//Lerps the camera to the followed enemy
 	void updatePosition ()
 	{
-		Vector3 pos = Vector3.Lerp (transform.position, m_FollowedTransform.position, 0.5f * Time.deltaTime);
+		Vector3 pos = Vector3.Lerp (transform.position, m_FollowedTransform.position, Mathf.Min(LERP_SPEED_PRE_DELTA * Time.deltaTime, 1.0f));
 		setPosition (pos);
 	}
 

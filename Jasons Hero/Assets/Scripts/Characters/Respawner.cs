@@ -10,6 +10,7 @@ public class Respawner : MonoBehaviour
 	Transform m_PrincessTransform;
 
 	const float MIN_DISTANCE = 5.0f;
+	public const float AMOUNT_TO_MOVE_OVER = 5.0f;
 
 	bool m_IsPrincess;
 
@@ -80,7 +81,14 @@ public class Respawner : MonoBehaviour
 	{
 		if (!m_IsPrincess)
 		{
-			Kill (0);
+			if (gameObject.name == "PlayerOne")
+			{
+				Kill (AMOUNT_TO_MOVE_OVER);
+			}
+			else
+			{
+				Kill (-AMOUNT_TO_MOVE_OVER);
+			}
 		}
 	}
 }
