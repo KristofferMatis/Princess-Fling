@@ -11,7 +11,7 @@ public class Throwable : MonoBehaviour
 		nope
 	};
 
-	CharacterController m_Controller;
+	protected CharacterController m_Controller;
 
 	states m_State = states.nope;
 
