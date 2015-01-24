@@ -13,7 +13,7 @@ public class Throwable : MonoBehaviour
 
 	protected CharacterController m_Controller;
 
-	states m_State = states.nope;
+	protected states m_State = states.nope;
 
 
     Vector2 m_Velocity = Vector2.zero;

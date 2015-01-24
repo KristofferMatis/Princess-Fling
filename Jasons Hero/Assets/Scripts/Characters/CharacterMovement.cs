@@ -1,18 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterMovement : MonoBehaviour {
+[RequireComponent(typeof(CharacterController))]
+public class CharacterMovement : MonoBehaviour 
+{
 
 	CharacterController m_Controller;
 
 	Vector3 m_Velocity = new Vector3 (0.0f, -0.1f, 0.0f);
 
-	const float WALKING_SPEED = 100.0f;
-	const float JUMPING_SPEED = 100.0f;
-	const float AIRBORNE_CONTROL = 100.0f;
-	const float GRAVITY = 20.0f;
+	const float WALKING_SPEED = 10.0f;
+    const float JUMPING_SPEED = 0.2f;
+    const float AIRBORNE_CONTROL = 7.0f;
+    const float GRAVITY = 0.8f;
+
+    const float FLOAT_POWER = 0.9f;
+    const float FLOAT_POWER_LOSS = 0.9f;
+    float m_CurrentFloatPower = FLOAT_POWER;
 
 	public Players m_Player;
+
+    bool m_IsHoldingA = false;
 
 
 	// Use this for initialization
@@ -30,6 +38,7 @@ public class CharacterMovement : MonoBehaviour {
 			if (InputManager.getAbilityDown(m_Player))
 			{
 				m_Velocity.y = JUMPING_SPEED;
+                m_IsHoldingA = true;
 				return;
 			}
 
@@ -39,8 +48,23 @@ public class CharacterMovement : MonoBehaviour {
 		//Airborne
 		else
 		{
+            if(m_IsHoldingA)
+            {
+                if(InputManager.getAbilityUp(m_Player) || m_Velocity.y < 0.0f)
+                {
+                    m_IsHoldingA = false;
+                    m_CurrentFloatPower = FLOAT_POWER;
+                }
+                else
+                {
+                    m_Velocity.y += m_CurrentFloatPower * Time.deltaTime;
+                    m_CurrentFloatPower -= FLOAT_POWER_LOSS * Time.deltaTime;
+                    Debug.Log(m_CurrentFloatPower);
+                }
+            }
+
 			m_Velocity.y -= GRAVITY * Time.deltaTime;
-			m_Velocity.x += InputManager.getSwitchLeftStick(m_Player).x * Time.deltaTime * AIRBORNE_CONTROL;
+			m_Velocity.x = InputManager.getSwitchLeftStick(m_Player).x * Time.deltaTime * AIRBORNE_CONTROL;
 		}
 
 		m_Controller.Move (m_Velocity);
