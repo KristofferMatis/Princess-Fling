@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class Throwable : MonoBehaviour 
 {
-	enum states
+	protected enum states
 	{
 		airborn,
 		carry,
