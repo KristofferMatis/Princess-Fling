@@ -41,7 +41,7 @@ public class Throwable : MonoBehaviour
     }
 
     protected Thrower m_BeingCarriedBy = null;
-    public Thrower BeingCarriedBy
+    public virtual Thrower BeingCarriedBy
     {
         get { return BeingCarriedBy; }
         set { m_BeingCarriedBy = value; }
