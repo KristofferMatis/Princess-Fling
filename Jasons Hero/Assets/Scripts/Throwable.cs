@@ -26,10 +26,15 @@ public class Throwable : MonoBehaviour
     public float i_FallSpeed = 1.0f;
 
 
+    const string DEFAULT_LAYER = "Throwable";
+    const string AIRBORNE_LAYER = "Airborne";
+
 	// Use this for initialization
 	protected virtual void Start () 
 	{
 		m_Controller = gameObject.GetComponent<CharacterController> ();
+
+        gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
 	}
 
 	// Update is called once per frame
@@ -115,6 +120,7 @@ public class Throwable : MonoBehaviour
     protected virtual void onExitAirborn()
     {
         m_Velocity = Vector2.zero;
+        gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
     }
 
     protected virtual void onExitCarry()
@@ -127,7 +133,8 @@ public class Throwable : MonoBehaviour
     }
 
     protected virtual void onAirborn()
-    {        
+    {
+        gameObject.layer = LayerMask.NameToLayer(AIRBORNE_LAYER);
     }
 
     protected virtual void onCarry()

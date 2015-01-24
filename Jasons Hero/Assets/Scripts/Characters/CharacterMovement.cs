@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     const float FLOAT_POWER_LOSS = 0.9f;
     float m_CurrentFloatPower = FLOAT_POWER;
 
+
 	public Players m_Player;
 
     bool m_IsHoldingA = false;
