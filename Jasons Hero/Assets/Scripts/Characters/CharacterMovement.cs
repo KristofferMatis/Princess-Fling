@@ -3,9 +3,9 @@ using System.Collections;
 
 public class CharacterMovement : Throwable 
 {
-	const float WALKING_SPEED = 10.0f;
+	const float WALKING_SPEED = 14.0f;
     const float JUMPING_SPEED = 0.2f;
-    const float AIRBORNE_CONTROL = 7.0f;
+    const float AIRBORNE_CONTROL = 9.0f;
     const float GRAVITY = 0.8f;
 
     const float FLOAT_POWER = 0.9f;
@@ -16,8 +16,16 @@ public class CharacterMovement : Throwable
 
     bool m_IsHoldingA = false;
 
-    const float CARRY_TIME = 1.0f;
+    const float STUN_TIME = 1.0f;
     float m_Timer = 0.0f;
+
+	int m_RaycastMask = -1;
+
+	protected override void Start ()
+	{
+		base.Start ();
+		m_RaycastMask = ~LayerMask.GetMask ("Throwable");
+	}
 
     protected override void carry()
     {
@@ -33,17 +41,29 @@ public class CharacterMovement : Throwable
     protected override void onCarry()
     {
         base.onCarry();
-        m_Timer = CARRY_TIME;
+        m_Timer = STUN_TIME;
     }
 
     protected override void onAirborn()
     {
         base.onAirborn();
+        m_Timer = 0.0f;
+    }
+
+    public void stun()
+    {
+        m_Timer = STUN_TIME;
     }
 
     protected override void nope()
     {
-		if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f))
+        //if(m_Timer > 0.0f)
+        //{
+        //    m_Timer -= Time.deltaTime;
+        //    return;
+        //}
+
+		if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
 		{
 			//Hit jump
 			if (InputManager.getJumpDown(m_Player))

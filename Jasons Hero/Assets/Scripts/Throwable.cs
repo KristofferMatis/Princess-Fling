@@ -86,6 +86,7 @@ public class Throwable : MonoBehaviour
     protected virtual void nope()
     {
         updateVelocity();
+        m_Controller.Move(m_Velocity);
     }
 
     protected virtual void updateVelocity()
@@ -170,6 +171,15 @@ public class Throwable : MonoBehaviour
     {
         if (m_State != states.airborn)
             return;
+
+        CharacterMovement temp = hit.gameObject.GetComponent<CharacterMovement>();
+
+        if (temp != null)
+        {
+            temp.changeState(states.airborn);
+            temp.Velocity = m_Velocity;
+        }
+            
 
         changeState(states.nope);
     }

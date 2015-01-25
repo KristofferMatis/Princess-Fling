@@ -11,7 +11,7 @@ public class Thrower : MonoBehaviour
 
     Throwable m_BeingCarried = null;
 
-    const float THROW_POWER = 0.5f;
+    const float THROW_POWER = 0.8f;
     const float IGNORE_COLLISION_PERIOD = 0.25f;
 
     CharacterMovement m_Movement;
@@ -88,6 +88,7 @@ public class Thrower : MonoBehaviour
 			if(m_Detector.ThrowablesInRange[i].isThrowable)
 			{
        	 		onPickUp(m_Detector.ThrowablesInRange[i]);
+				return;
 			}
 		}
     }
@@ -106,6 +107,7 @@ public class Thrower : MonoBehaviour
         m_BeingCarried.changeState(Throwable.states.airborn);
         m_BeingCarried.transform.parent = null;
 
+        IgnoreCollision(m_BeingCarried);
         StartCoroutine(tempIgnoreCollision(m_BeingCarried));
 
         m_Detector.removeThrowable(m_BeingCarried);
@@ -115,7 +117,7 @@ public class Thrower : MonoBehaviour
         m_BeingCarried = null;
     }
 
-    IEnumerator tempIgnoreCollision(Throwable thrown)
+    void IgnoreCollision(Throwable thrown)
     {
         Collider[] collidersMine = GetComponents<Collider>();
         Collider[] collidersThiers = thrown.gameObject.GetComponents<Collider>();
@@ -128,6 +130,12 @@ public class Thrower : MonoBehaviour
                 	Physics.IgnoreCollision(collidersMine[i], collidersThiers[c], true);
             }
         }
+    }
+
+    IEnumerator tempIgnoreCollision(Throwable thrown)
+    {
+        Collider[] collidersMine = GetComponents<Collider>();
+        Collider[] collidersThiers = thrown.gameObject.GetComponents<Collider>();
 
         yield return new WaitForSeconds(IGNORE_COLLISION_PERIOD);
 
