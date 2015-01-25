@@ -1,0 +1,475 @@
+fileFormatVersion: 2
+guid: 759413247a0625f49aede8d86575fc53
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Plane018
+    100004: Plane028
+    100006: Plane029
+    100008: Plane030
+    100010: Plane031
+    100012: Plane032
+    100014: Plane033
+    100016: Plane034
+    100018: Plane035
+    100020: Plane036
+    100022: Plane037
+    100024: Plane038
+    100026: Plane039
+    100028: Plane040
+    400000: //RootNode
+    400002: Plane018
+    400004: Plane028
+    400006: Plane029
+    400008: Plane030
+    400010: Plane031
+    400012: Plane032
+    400014: Plane033
+    400016: Plane034
+    400018: Plane035
+    400020: Plane036
+    400022: Plane037
+    400024: Plane038
+    400026: Plane039
+    400028: Plane040
+    2300000: Plane018
+    2300002: Plane028
+    2300004: Plane029
+    2300006: Plane030
+    2300008: Plane031
+    2300010: Plane032
+    2300012: Plane033
+    2300014: Plane034
+    2300016: Plane035
+    2300018: Plane036
+    2300020: Plane037
+    2300022: Plane038
+    2300024: Plane039
+    2300026: Plane040
+    3300000: Plane018
+    3300002: Plane028
+    3300004: Plane029
+    3300006: Plane030
+    3300008: Plane031
+    3300010: Plane032
+    3300012: Plane033
+    3300014: Plane034
+    3300016: Plane035
+    3300018: Plane036
+    3300020: Plane037
+    3300022: Plane038
+    3300024: Plane039
+    3300026: Plane040
+    4300000: Plane034
+    4300002: Plane035
+    4300004: Plane032
+    4300006: Plane031
+    4300008: Plane040
+    4300010: Plane039
+    4300012: Plane030
+    4300014: Plane033
+    4300016: Plane029
+    4300018: Plane028
+    4300020: Plane018
+    4300022: Plane037
+    4300024: Plane038
+    4300026: Plane036
+    7400000: Idle
+    7400002: Run
+    7400004: run carry
+    7400006: carry
+    7400008: carried
+    7400010: throw
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: .100000001
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane034
+        weight: 1
+      - path: Plane034/Plane029
+        weight: 1
+      - path: Plane034/Plane029/Plane028
+        weight: 1
+      - path: Plane034/Plane029/Plane028/Plane018
+        weight: 1
+      - path: Plane034/Plane035
+        weight: 1
+      - path: Plane034/Plane035/Plane030
+        weight: 1
+      - path: Plane034/Plane035/Plane030/Plane033
+        weight: 1
+      - path: Plane034/Plane035/Plane032
+        weight: 1
+      - path: Plane034/Plane035/Plane032/Plane031
+        weight: 1
+      - path: Plane034/Plane035/Plane040
+        weight: 1
+      - path: Plane034/Plane035/Plane040/Plane039
+        weight: 1
+      - path: Plane034/Plane037
+        weight: 1
+      - path: Plane034/Plane037/Plane038
+        weight: 1
+      - path: Plane034/Plane037/Plane038/Plane036
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 54
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane034
+        weight: 1
+      - path: Plane034/Plane029
+        weight: 1
+      - path: Plane034/Plane029/Plane028
+        weight: 1
+      - path: Plane034/Plane029/Plane028/Plane018
+        weight: 1
+      - path: Plane034/Plane035
+        weight: 1
+      - path: Plane034/Plane035/Plane030
+        weight: 1
+      - path: Plane034/Plane035/Plane030/Plane033
+        weight: 1
+      - path: Plane034/Plane035/Plane032
+        weight: 1
+      - path: Plane034/Plane035/Plane032/Plane031
+        weight: 1
+      - path: Plane034/Plane035/Plane040
+        weight: 1
+      - path: Plane034/Plane035/Plane040/Plane039
+        weight: 1
+      - path: Plane034/Plane037
+        weight: 1
+      - path: Plane034/Plane037/Plane038
+        weight: 1
+      - path: Plane034/Plane037/Plane038/Plane036
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run carry
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 104
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane034
+        weight: 1
+      - path: Plane034/Plane029
+        weight: 1
+      - path: Plane034/Plane029/Plane028
+        weight: 1
+      - path: Plane034/Plane029/Plane028/Plane018
+        weight: 1
+      - path: Plane034/Plane035
+        weight: 1
+      - path: Plane034/Plane035/Plane030
+        weight: 1
+      - path: Plane034/Plane035/Plane030/Plane033
+        weight: 1
+      - path: Plane034/Plane035/Plane032
+        weight: 1
+      - path: Plane034/Plane035/Plane032/Plane031
+        weight: 1
+      - path: Plane034/Plane035/Plane040
+        weight: 1
+      - path: Plane034/Plane035/Plane040/Plane039
+        weight: 1
+      - path: Plane034/Plane037
+        weight: 1
+      - path: Plane034/Plane037/Plane038
+        weight: 1
+      - path: Plane034/Plane037/Plane038/Plane036
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: carry
+      takeName: Take 001
+      firstFrame: 118
+      lastFrame: 123
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane034
+        weight: 1
+      - path: Plane034/Plane029
+        weight: 1
+      - path: Plane034/Plane029/Plane028
+        weight: 1
+      - path: Plane034/Plane029/Plane028/Plane018
+        weight: 1
+      - path: Plane034/Plane035
+        weight: 1
+      - path: Plane034/Plane035/Plane030
+        weight: 1
+      - path: Plane034/Plane035/Plane030/Plane033
+        weight: 1
+      - path: Plane034/Plane035/Plane032
+        weight: 1
+      - path: Plane034/Plane035/Plane032/Plane031
+        weight: 1
+      - path: Plane034/Plane035/Plane040
+        weight: 1
+      - path: Plane034/Plane035/Plane040/Plane039
+        weight: 1
+      - path: Plane034/Plane037
+        weight: 1
+      - path: Plane034/Plane037/Plane038
+        weight: 1
+      - path: Plane034/Plane037/Plane038/Plane036
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: carried
+      takeName: Take 001
+      firstFrame: 127
+      lastFrame: 144
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane034
+        weight: 1
+      - path: Plane034/Plane029
+        weight: 1
+      - path: Plane034/Plane029/Plane028
+        weight: 1
+      - path: Plane034/Plane029/Plane028/Plane018
+        weight: 1
+      - path: Plane034/Plane035
+        weight: 1
+      - path: Plane034/Plane035/Plane030
+        weight: 1
+      - path: Plane034/Plane035/Plane030/Plane033
+        weight: 1
+      - path: Plane034/Plane035/Plane032
+        weight: 1
+      - path: Plane034/Plane035/Plane032/Plane031
+        weight: 1
+      - path: Plane034/Plane035/Plane040
+        weight: 1
+      - path: Plane034/Plane035/Plane040/Plane039
+        weight: 1
+      - path: Plane034/Plane037
+        weight: 1
+      - path: Plane034/Plane037/Plane038
+        weight: 1
+      - path: Plane034/Plane037/Plane038/Plane036
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: throw
+      takeName: Take 001
+      firstFrame: 101
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane034
+        weight: 1
+      - path: Plane034/Plane029
+        weight: 1
+      - path: Plane034/Plane029/Plane028
+        weight: 1
+      - path: Plane034/Plane029/Plane028/Plane018
+        weight: 1
+      - path: Plane034/Plane035
+        weight: 1
+      - path: Plane034/Plane035/Plane030
+        weight: 1
+      - path: Plane034/Plane035/Plane030/Plane033
+        weight: 1
+      - path: Plane034/Plane035/Plane032
+        weight: 1
+      - path: Plane034/Plane035/Plane032/Plane031
+        weight: 1
+      - path: Plane034/Plane035/Plane040
+        weight: 1
+      - path: Plane034/Plane035/Plane040/Plane039
+        weight: 1
+      - path: Plane034/Plane037
+        weight: 1
+      - path: Plane034/Plane037/Plane038
+        weight: 1
+      - path: Plane034/Plane037/Plane038/Plane036
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
