@@ -21,6 +21,19 @@ public class SetUp : MonoBehaviour
         two.player = Players.PlayerTwo;
 
         PlayersInfo.addPlayer(two);
+
+
+		PlayersInfo.Player three;
+		three.gamepad = GamepadInput.GamePad.Index.Three;
+		three.player = Players.PlayerThree;
+		
+		PlayersInfo.addPlayer(three);
+		
+		PlayersInfo.Player four;
+		four.gamepad = GamepadInput.GamePad.Index.Four;
+		four.player = Players.PlayerFour;
+		
+		PlayersInfo.addPlayer(four);
     }
 
 	// Use this for initialization
