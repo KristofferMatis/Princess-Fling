@@ -13,8 +13,8 @@ public class KillZone : MonoBehaviour {
 			{
 				//Check who last had the princess
 				Princess princess = other.gameObject.GetComponent<Princess>();
-
-				if (princess.getLastThrower().i_Player == Players.PlayerOne)
+				Players thePlayer = princess.getLastThrower().i_Player;
+				if (thePlayer == Players.PlayerOne)
 				{
 					respawner.Kill(-Respawner.AMOUNT_TO_MOVE_OVER);
 				}
@@ -22,11 +22,15 @@ public class KillZone : MonoBehaviour {
 				{
 					respawner.Kill(Respawner.AMOUNT_TO_MOVE_OVER);
 				}
-				return;
 			}
-
-			//Players just respawn nearby
-			respawner.Kill(0);
+			else if (other.name == "PlayerOne")
+			{
+				respawner.Kill(Respawner.AMOUNT_TO_MOVE_OVER);
+			}
+			else
+			{
+				respawner.Kill(-Respawner.AMOUNT_TO_MOVE_OVER);
+			}
 		}
 	}
 }
