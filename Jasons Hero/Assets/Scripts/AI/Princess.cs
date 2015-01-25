@@ -8,12 +8,10 @@ public class Princess : Throwable
 	const float SPEED = 500.0f;
 
 	public AudioClip[] m_Clips;
-	AudioSource m_Audio;
 
 	void Awake ()
 	{
 		m_Weight = 1.4f;
-		m_Audio = GetComponent<AudioSource>();
 	}
 
 	public override Thrower BeingCarriedBy

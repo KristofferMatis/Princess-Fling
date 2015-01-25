@@ -25,17 +25,17 @@ public class CharacterMovement : Throwable
 
     public bool IsCarryingOBJ = false;
 
-	AudioSource m_Audio;
 	public AudioClip[] m_ThrownClips;
 	public AudioClip[] m_JumpClips;
+	public AudioClip[] m_LandClips;
+
+	bool m_WasGrounded = false;
 
 	protected override void Start ()
 	{
 		base.Start ();
 		m_RaycastMask = ~LayerMask.GetMask ("Throwable");
 		m_Throw = GetComponent<Thrower>();
-		m_Audio = GetComponent<AudioSource>();
-
 	}
 
     protected override void carry()
@@ -76,6 +76,13 @@ public class CharacterMovement : Throwable
         //}
         if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
         {
+			if (!m_WasGrounded)
+			{
+				m_Audio.PlayOneShot (m_LandClips[UnityEngine.Random.Range(0, m_LandClips.Length)]);
+			}
+
+			m_WasGrounded = true;
+
             //Hit jump
             if (InputManager.getJumpDown(m_Player))
             {
@@ -106,6 +113,7 @@ public class CharacterMovement : Throwable
         //Airborne
         else
         {
+			m_WasGrounded = false;
             if (m_IsHoldingA)
             {
                 if (InputManager.getJumpUp(m_Player) || m_Velocity.y < 0.0f)
