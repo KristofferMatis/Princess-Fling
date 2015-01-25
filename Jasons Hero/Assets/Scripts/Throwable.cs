@@ -38,7 +38,6 @@ public class Throwable : MonoBehaviour
     const float VELOCITY_LOSS = 0.75f;
 
 	protected AudioSource m_Audio;
-	public AudioClip[] m_ImpactClips;
 
     public bool isThrowable
     {
@@ -158,10 +157,6 @@ public class Throwable : MonoBehaviour
     {
         m_Velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
-		if (m_ImpactClips.Length > 0)
-		{
-			m_Audio.PlayOneShot (m_ImpactClips[UnityEngine.Random.Range(0, m_ImpactClips.Length)]);
-		}
     }
 
     protected virtual void onExitCarry()
