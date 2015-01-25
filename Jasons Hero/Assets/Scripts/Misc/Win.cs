@@ -25,16 +25,17 @@ public class Win : MonoBehaviour
 
 			m_Points++;
 
+			foreach (Throwable throwable in m_AllThrowables)
+			{
+				throwable.Reset();
+			}
+
+			m_Points++;
 			if (m_Points >= 3)
 			{
 				m_Texture.texture = m_WinTexture;
 				m_Texture.enabled = true;
 				return;
-			}
-
-			foreach (Throwable throwable in m_AllThrowables)
-			{
-				throwable.Reset();
 			}
 		}
 	}
