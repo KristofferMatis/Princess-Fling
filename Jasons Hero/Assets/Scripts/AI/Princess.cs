@@ -5,7 +5,7 @@ public class Princess : Throwable
 {
 	Thrower LastThrower;
 
-	const float SPEED = 220.0f;
+	const float SPEED = 225.0f;
 	public override Thrower BeingCarriedBy
 	{
 		get { return BeingCarriedBy; }
@@ -14,18 +14,21 @@ public class Princess : Throwable
 
     protected override void nope()
     {
-        if (transform.position.x > 1.0f)
-        {
-            m_Controller.SimpleMove(Vector3.left * SPEED * Time.deltaTime);
-        }
-        else if (transform.position.x < -1.0f)
-        {
-            m_Controller.SimpleMove(Vector3.right * SPEED * Time.deltaTime);
-        }
-        else
-        {
-            m_Controller.SimpleMove(Vector3.zero);
-        }
+		if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f))
+		{
+			if (transform.position.x > 1.0f)
+			{
+				m_Controller.SimpleMove(Vector3.left * SPEED * Time.deltaTime);
+				return;
+			}
+			else if (transform.position.x < -1.0f)
+			{
+				m_Controller.SimpleMove(Vector3.right * SPEED * Time.deltaTime);
+				return;
+			}
+		}
+		Debug.Log("Air");
+        m_Controller.SimpleMove(Vector3.zero);
     }
 
 	public Thrower getLastThrower ()
