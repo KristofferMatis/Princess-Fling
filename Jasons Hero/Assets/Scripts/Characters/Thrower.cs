@@ -53,6 +53,8 @@ public class Thrower : MonoBehaviour
         m_BeingCarried.transform.parent = null;
 
         m_BeingCarried = null;
+
+        m_Movement.IsCarryingOBJ = false;
     }
 
     void pickUp()
@@ -103,6 +105,8 @@ public class Thrower : MonoBehaviour
         m_BeingCarried.BeingCarriedBy = this;
 
         m_BeingCarried.transform.position = i_MountPoint.transform.position;
+
+        m_Movement.IsCarryingOBJ = true;
     }
 
     void onThrow()
@@ -119,6 +123,8 @@ public class Thrower : MonoBehaviour
         m_BeingCarried.BeingCarriedBy = null;
 
         m_BeingCarried = null;
+
+        m_Movement.IsCarryingOBJ = false;
     }
 
     void IgnoreCollision(Throwable thrown)
