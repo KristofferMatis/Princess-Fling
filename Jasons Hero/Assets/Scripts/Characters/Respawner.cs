@@ -9,7 +9,7 @@ public class Respawner : MonoBehaviour
 	float m_AddToRespawnArea = 0.0f;
 	Transform m_PrincessTransform;
 
-	const float MIN_DISTANCE = 5.0f;
+	const float MIN_DISTANCE = 4.0f;
 	public const float AMOUNT_TO_MOVE_OVER = 30.0f;
 	public const float AMOUNT_TO_MOVE_UP = 10.0f;
 
