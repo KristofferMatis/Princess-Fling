@@ -16,12 +16,12 @@ public class Princess : Throwable
     {
 		if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f))
 		{
-			if (transform.position.x > 1.0f)
+			if (transform.position.x > 0.5f)
 			{
 				m_Controller.SimpleMove(Vector3.left * SPEED * Time.deltaTime);
 				return;
 			}
-			else if (transform.position.x < -1.0f)
+			else if (transform.position.x < -0.5f)
 			{
 				m_Controller.SimpleMove(Vector3.right * SPEED * Time.deltaTime);
 				return;
