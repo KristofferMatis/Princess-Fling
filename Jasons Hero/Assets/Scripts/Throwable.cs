@@ -31,6 +31,8 @@ public class Throwable : MonoBehaviour
 
     Thrower m_Thrower = null;
 
+    const float VELOCITY_LOSS = 0.75f;
+
     public bool isThrowable
     {
         get 
@@ -185,7 +187,7 @@ public class Throwable : MonoBehaviour
         if (temp != null)
         {
             temp.changeState(states.airborn);
-            temp.Velocity = m_Velocity;
+            temp.Velocity = m_Velocity * VELOCITY_LOSS;
         }
             
 
