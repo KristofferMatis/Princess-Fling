@@ -198,7 +198,7 @@ public class Throwable : MonoBehaviour
                 tempy.changeState(states.airborn);
 
 
-                tempy.Velocity = new Vector2(m_Velocity.x, Mathf.Abs(m_Velocity.y)) * VELOCITY_LOSS;
+                tempy.Velocity = new Vector2(m_Velocity.x, Mathf.Abs(m_Velocity.y) + 0.5f) * VELOCITY_LOSS;
             }
         }
             
