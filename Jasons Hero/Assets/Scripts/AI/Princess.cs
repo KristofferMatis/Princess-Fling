@@ -5,7 +5,7 @@ public class Princess : Throwable
 {
 	Thrower LastThrower;
 
-	const float SPEED = 250.0f;
+	const float SPEED = 500.0f;
 	public override Thrower BeingCarriedBy
 	{
 		get { return BeingCarriedBy; }
