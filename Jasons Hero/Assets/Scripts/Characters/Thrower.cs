@@ -16,6 +16,8 @@ public class Thrower : MonoBehaviour
 
     CharacterMovement m_Movement;
 
+    public GameObject i_MountPoint;
+
     // Use this for initialization
     void Start()
     {
@@ -99,6 +101,8 @@ public class Thrower : MonoBehaviour
         m_BeingCarried.changeState(Throwable.states.carry);
         m_BeingCarried.transform.parent = transform;
         m_BeingCarried.BeingCarriedBy = this;
+
+        m_BeingCarried.transform.position = i_MountPoint.transform.position;
     }
 
     void onThrow()

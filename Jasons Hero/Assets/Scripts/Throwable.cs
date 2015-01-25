@@ -29,6 +29,8 @@ public class Throwable : MonoBehaviour
     const string DEFAULT_LAYER = "Throwable";
     const string AIRBORNE_LAYER = "Airborne";
 
+    Thrower m_Thrower = null;
+
     public bool isThrowable
     {
         get 
@@ -53,6 +55,8 @@ public class Throwable : MonoBehaviour
 		m_Controller = gameObject.GetComponent<CharacterController> ();
 
         gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
+
+        m_Thrower = gameObject.GetComponent<Thrower>();
 	}
 
 	// Update is called once per frame
@@ -150,6 +154,10 @@ public class Throwable : MonoBehaviour
 
     protected virtual void onExitNope()
     {
+		if (m_Thrower != null)
+        {
+            m_Thrower.drop();
+        }
     }
 
     protected virtual void onAirborn()
@@ -172,7 +180,7 @@ public class Throwable : MonoBehaviour
         if (m_State != states.airborn)
             return;
 
-        CharacterMovement temp = hit.gameObject.GetComponent<CharacterMovement>();
+        Throwable temp = hit.gameObject.GetComponent<Throwable>();
 
         if (temp != null)
         {
