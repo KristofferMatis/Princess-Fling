@@ -26,6 +26,12 @@ public class Win : MonoBehaviour
 		m_AllThrowables = Object.FindObjectsOfType<Throwable> ();
 		m_Audio = GetComponent<AudioSource>();
 		m_RoundTexture.texture = m_Round1Textures[index];
+
+		CharacterMovement[] movements = GameObject.FindObjectsOfType<CharacterMovement>();
+		foreach(CharacterMovement movement in movements)
+		{
+			movement.stop = true;
+		}
 	}
 
 	void Update ()
@@ -59,6 +65,12 @@ public class Win : MonoBehaviour
 				index = 0;
 				m_Timer = -1.0f;
 				m_RoundTexture.enabled = false;
+
+				CharacterMovement[] movements = GameObject.FindObjectsOfType<CharacterMovement>();
+				foreach(CharacterMovement movement in movements)
+				{
+					movement.stop = false;
+				}
 			}
 		}
 	}
@@ -67,6 +79,12 @@ public class Win : MonoBehaviour
 	{
 		if (other.name == "Princess")
 		{
+			CharacterMovement[] movements = GameObject.FindObjectsOfType<CharacterMovement>();
+			foreach(CharacterMovement movement in movements)
+			{
+				movement.stop = true;
+			}
+
 			//Play sound
 			m_Audio.PlayOneShot(m_Audio.clip);
 

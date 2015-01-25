@@ -31,6 +31,8 @@ public class CharacterMovement : Throwable
 
 	bool m_WasGrounded = false;
 
+	public bool stop = true;
+
 	protected override void Start ()
 	{
 		base.Start ();
@@ -69,11 +71,9 @@ public class CharacterMovement : Throwable
 
     protected override void nope()
     {
-        //if(m_Timer > 0.0f)
-        //{
-        //    m_Timer -= Time.deltaTime;
-        //    return;
-        //}
+        if (stop)
+			return;
+
         if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
         {
 			if (!m_WasGrounded)
