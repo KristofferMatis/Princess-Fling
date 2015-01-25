@@ -10,7 +10,10 @@ public class Respawner : MonoBehaviour
 	Transform m_PrincessTransform;
 
 	const float MIN_DISTANCE = 5.0f;
-	public const float AMOUNT_TO_MOVE_OVER = 25.0f;
+	public const float AMOUNT_TO_MOVE_OVER = 30.0f;
+	public const float AMOUNT_TO_MOVE_UP = 10.0f;
+
+	Thrower m_Thrower;
 
 	bool m_IsPrincess;
 
@@ -22,6 +25,8 @@ public class Respawner : MonoBehaviour
 		{
 			m_IsPrincess = true;
 		}
+
+		m_Thrower = GetComponent<Thrower>();
 	}
 	
 	// Update is called once per frame
@@ -62,7 +67,7 @@ public class Respawner : MonoBehaviour
 		Vector3 chosenPoint = Vector3.zero;
 		for (int i = 0; i < m_RespawnPoints.Length; i++)
 		{
-			float thisDistance = Vector3.Distance(m_PrincessTransform.position + new Vector3 (m_AddToRespawnArea, 0.0f, 0.0f), m_RespawnPoints[i].position);
+			float thisDistance = Vector3.Distance(m_PrincessTransform.position + new Vector3 (m_AddToRespawnArea, AMOUNT_TO_MOVE_UP, 0.0f), m_RespawnPoints[i].position);
 			if (thisDistance < dist && (m_IsPrincess || thisDistance > MIN_DISTANCE))
 			{
 				dist = thisDistance;
@@ -74,6 +79,11 @@ public class Respawner : MonoBehaviour
 		//Respawn
 		transform.position = chosenPoint;
 		renderer.enabled = true;
+
+		if (m_Thrower != null)
+		{
+			m_Thrower.drop();
+		}
 	}
 
 	//When the character is off the camera

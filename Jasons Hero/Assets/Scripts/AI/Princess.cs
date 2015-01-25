@@ -27,7 +27,6 @@ public class Princess : Throwable
 				return;
 			}
 		}
-		Debug.Log("Air");
         m_Controller.SimpleMove(Vector3.zero);
     }
 
