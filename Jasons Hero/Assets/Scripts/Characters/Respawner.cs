@@ -10,8 +10,8 @@ public class Respawner : MonoBehaviour
 	Transform m_PrincessTransform;
 
 	const float MIN_DISTANCE = 4.0f;
-	public const float AMOUNT_TO_MOVE_OVER = 30.0f;
-	public const float AMOUNT_TO_MOVE_UP = 10.0f;
+	public const float AMOUNT_TO_MOVE_OVER = 20.0f;
+	public const float AMOUNT_TO_MOVE_UP = 5.0f;
 
 	Thrower m_Thrower;
 
@@ -69,11 +69,21 @@ public class Respawner : MonoBehaviour
 
 		//Play sound depending on player or princess
 		m_Audio.PlayOneShot (m_DeathClips[UnityEngine.Random.Range(0, m_DeathClips.Length)]);
+
+		if (gameObject.name == "Princess")
+		{
+			Camera.main.GetComponent<CameraController>().m_FollowedTransform = null;
+		}
 	}
 
 	//Respawn this character
 	public void Respawn ()
 	{
+		if (gameObject.name == "Princess")
+		{
+			Camera.main.GetComponent<CameraController>().m_FollowedTransform = transform;
+		}
+
 		m_Timer = -1.0f;
 
 		//Find nearest
@@ -91,7 +101,7 @@ public class Respawner : MonoBehaviour
 		}
 
 		//Respawn
-		transform.position = chosenPoint;
+		transform.position = new Vector3(chosenPoint.x, chosenPoint.y, 0.0f);
 
 		Throwable temp = gameObject.GetComponent<Throwable> ();
 		if(temp != null)

@@ -9,8 +9,7 @@ public class Door : MonoBehaviour {
 	{
 		if (other.name == "Princess")
 		{
-			other.transform.position = m_Goto.position;
-
+			other.transform.position =  new Vector3(m_Goto.position.x, m_Goto.position.y, 0.0f);
 			//Door sound
 		}
 	}

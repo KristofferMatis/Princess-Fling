@@ -18,12 +18,12 @@ public class princessAnimator : MonoBehaviour
     Animation m_animationthingy;
 
 
-    Throwable velocityGiver;
+	Princess velocityGiver;
     Vector3 defaultScale;
     // Use this for initialization
     void Start()
     {
-        velocityGiver = (Throwable)gameObject.GetComponent(typeof(Throwable));
+		velocityGiver = (Princess)gameObject.GetComponent(typeof(Princess));
         defaultScale = transform.localScale;
 
         m_animationthingy = GetComponentInChildren<Animation>();
@@ -44,7 +44,7 @@ public class princessAnimator : MonoBehaviour
                 m_state = animations.carried;
                 break;
             case Throwable.states.nope:
-                if(Mathf.Abs(velocityGiver.Velocity.x) > 0.0f)
+				if(Mathf.Abs(transform.position.x) > 0.5f)
                 {
                     m_state = animations.running;
                 }
@@ -61,13 +61,27 @@ public class princessAnimator : MonoBehaviour
 
     void flipper()
     {
-        if (velocityGiver.Velocity.x > 0.0f)
-        {
-            transform.localScale = new Vector3(Mathf.Abs(defaultScale.x), defaultScale.y, defaultScale.z);
-        }
-        else if (velocityGiver.Velocity.x < 0.0f)
-        {
-            transform.localScale = new Vector3(-Mathf.Abs(defaultScale.x), defaultScale.y, defaultScale.z);
-        }
-    }
+		if(m_state != animations.running)
+		{
+	        if (velocityGiver.Velocity.x > 0.0f)
+	        {
+	            transform.localScale = new Vector3(Mathf.Abs(defaultScale.x), defaultScale.y, defaultScale.z);
+	        }
+	        else if (velocityGiver.Velocity.x < 0.0f)
+	        {
+	            transform.localScale = new Vector3(-Mathf.Abs(defaultScale.x), defaultScale.y, defaultScale.z);
+	        }
+    	}
+		else
+		{
+			if (transform.position.x < -0.5f)
+			{
+				transform.localScale = new Vector3(Mathf.Abs(defaultScale.x), defaultScale.y, defaultScale.z);
+			}
+			else if (transform.position.x > 0.5f)
+			{
+				transform.localScale = new Vector3(-Mathf.Abs(defaultScale.x), defaultScale.y, defaultScale.z);
+			}
+		}
+	}
 }

@@ -49,8 +49,8 @@ public class Princess : Throwable
 			}
 		}
 		//Airborne movement
-
-        m_Controller.SimpleMove(Vector3.zero);
+		base.nope ();
+        //m_Controller.SimpleMove(Vector3.zero);
     }
 
 	public Thrower getLastThrower ()

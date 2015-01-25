@@ -16,8 +16,11 @@ public class CameraController : MonoBehaviour {
 	//Update
 	void Update ()
 	{
-		updatePosition ();
-		updateZoom ();
+		if (m_FollowedTransform != null)
+		{
+			updatePosition ();
+			updateZoom ();
+		}
 	}
 
 	//Lerps the camera to the followed enemy
