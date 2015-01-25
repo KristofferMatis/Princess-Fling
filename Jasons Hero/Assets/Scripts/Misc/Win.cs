@@ -4,6 +4,8 @@ using System.Collections;
 public class Win : MonoBehaviour
 {
 	GUITexture m_Texture;
+	public GUITexture m_RoundTexture;
+
 	public Texture m_WinTexture;
 	AudioSource m_Audio;
 
@@ -14,7 +16,7 @@ public class Win : MonoBehaviour
 	public Texture[] m_Round1Textures;
 	public Texture[] m_Round2Textures;
 	public Texture[] m_Round3Textures;
-	float m_Timer = -1.0f;
+	float m_Timer = 1.0f;
 	int index = 0;
 
 	void Start ()
@@ -23,6 +25,7 @@ public class Win : MonoBehaviour
 		m_Texture.enabled = false;
 		m_AllThrowables = Object.FindObjectsOfType<Throwable> ();
 		m_Audio = GetComponent<AudioSource>();
+		m_RoundTexture.texture = m_Round1Textures[index];
 	}
 
 	void Update ()
@@ -38,24 +41,24 @@ public class Win : MonoBehaviour
 				m_Timer = 1.0f;
 				index++;
 
-				if (m_Points == 1)
+				if (m_Points == 0)
 				{
-					m_Texture.texture = m_Round1Textures[index];
+					m_RoundTexture.texture = m_Round1Textures[index];
 				}
-				else if (m_Points == 2)
+				else if (m_Points == 1)
 				{
-					m_Texture.texture = m_Round2Textures[index];
+					m_RoundTexture.texture = m_Round2Textures[index];
 				}
 				else
 				{
-					m_Texture.texture = m_Round3Textures[index];
+					m_RoundTexture.texture = m_Round3Textures[index];
 				}
 			}
 			else
 			{
 				index = 0;
 				m_Timer = -1.0f;
-				m_Texture.enabled = false;
+				m_RoundTexture.enabled = false;
 			}
 		}
 	}
@@ -78,24 +81,22 @@ public class Win : MonoBehaviour
 			if (m_Points >= 3)
 			{
 				m_Texture.texture = m_WinTexture;
+				m_Texture.enabled = true;
+				m_RoundTexture.enabled = false;
 			}
 			else
 			{
 				if (m_Points == 1)
 				{
-					m_Texture.texture = m_Round1Textures[index];
-				}
-				else if (m_Points == 2)
-				{
-					m_Texture.texture = m_Round2Textures[index];
+					m_RoundTexture.texture = m_Round2Textures[index];
 				}
 				else
 				{
-					m_Texture.texture = m_Round3Textures[index];
+					m_RoundTexture.texture = m_Round3Textures[index];
 				}
 				m_Timer = 1.0f;
+				m_RoundTexture.enabled = true;
 			}
-			m_Texture.enabled = true;
 		}
 	}
 }
