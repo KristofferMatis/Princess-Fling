@@ -7,6 +7,8 @@ public class Princess : Throwable
 
 	const float SPEED = 500.0f;
 
+	public AudioClip[] m_Clips;
+
 	void Awake ()
 	{
 		m_Weight = 1.4f;
@@ -21,6 +23,12 @@ public class Princess : Throwable
 				LastThrower = m_BeingCarriedBy;
 			}
 		}
+	}
+
+	protected override void onAirborn()
+	{
+		base.onAirborn ();
+		m_Audio.PlayOneShot (m_Clips[UnityEngine.Random.Range(0, m_Clips.Length - 1)]);
 	}
 
     protected override void nope()

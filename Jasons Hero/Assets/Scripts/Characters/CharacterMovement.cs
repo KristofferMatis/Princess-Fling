@@ -25,6 +25,11 @@ public class CharacterMovement : Throwable
 
     public bool IsCarryingOBJ = false;
 
+	public AudioClip[] m_ThrownClips;
+	public AudioClip[] m_JumpClips;
+	public AudioClip[] m_LandClips;
+
+	bool m_WasGrounded = false;
 
 	protected override void Start ()
 	{
@@ -54,9 +59,7 @@ public class CharacterMovement : Throwable
     {
         base.onAirborn();
         m_Timer = 0.0f;
-
-		//Flung sound for knight
-
+		m_Audio.PlayOneShot (m_ThrownClips[UnityEngine.Random.Range(0, m_ThrownClips.Length)]);
     }
 
     public void stun()
@@ -73,9 +76,18 @@ public class CharacterMovement : Throwable
         //}
         if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
         {
+			if (!m_WasGrounded)
+			{
+				m_Audio.PlayOneShot (m_LandClips[UnityEngine.Random.Range(0, m_LandClips.Length)]);
+			}
+
+			m_WasGrounded = true;
+
             //Hit jump
             if (InputManager.getJumpDown(m_Player))
             {
+				m_Audio.PlayOneShot (m_JumpClips[UnityEngine.Random.Range(0, m_JumpClips.Length)]);
+
                 if (!IsCarryingOBJ)
                 {
                     m_Velocity.y = JUMPING_SPEED;
@@ -101,6 +113,7 @@ public class CharacterMovement : Throwable
         //Airborne
         else
         {
+			m_WasGrounded = false;
             if (m_IsHoldingA)
             {
                 if (InputManager.getJumpUp(m_Player) || m_Velocity.y < 0.0f)

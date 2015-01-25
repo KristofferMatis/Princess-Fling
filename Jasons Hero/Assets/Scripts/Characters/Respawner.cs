@@ -19,6 +19,9 @@ public class Respawner : MonoBehaviour
 
     public Transform i_DeadPlace;
 
+	AudioSource m_Audio;
+	public AudioClip[] m_DeathClips;
+
 	//Load princess position
 	void Start ()
 	{
@@ -29,6 +32,7 @@ public class Respawner : MonoBehaviour
 		}
 
 		m_Thrower = GetComponent<Thrower>();
+		m_Audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -64,6 +68,7 @@ public class Respawner : MonoBehaviour
         transform.position = i_DeadPlace.position;
 
 		//Play sound depending on player or princess
+		m_Audio.PlayOneShot (m_DeathClips[UnityEngine.Random.Range(0, m_DeathClips.Length)]);
 	}
 
 	//Respawn this character

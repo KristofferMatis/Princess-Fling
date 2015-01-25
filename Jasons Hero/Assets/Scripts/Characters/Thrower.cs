@@ -18,11 +18,17 @@ public class Thrower : MonoBehaviour
 
     public GameObject i_MountPoint;
 
+	public AudioClip[] m_ThrowClips;
+
+	AudioSource m_Audio;
+
+
     // Use this for initialization
     void Start()
     {
         m_Detector = GetComponentInChildren<ThrowableDetector>();
         m_Movement = GetComponent<CharacterMovement>();
+		m_Audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -113,8 +119,7 @@ public class Thrower : MonoBehaviour
 
     void onThrow()
     {
-		//Throw sound
-
+		m_Audio.PlayOneShot (m_ThrowClips[UnityEngine.Random.Range(0, m_ThrowClips.Length)]);
 
         m_BeingCarried.Velocity = InputManager.getLeftStick(i_Player).normalized * THROW_POWER;
         m_BeingCarried.changeState(Throwable.states.airborn);
