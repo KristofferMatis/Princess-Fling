@@ -42,7 +42,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         flipper();
 
-        
         if(m_state == animations.throwing)
         {
             if(m_animationthingy.isPlaying == false)
@@ -78,7 +77,6 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         m_animationthingy.CrossFade(clips[(int)m_state].name, 0.1f);
-        Debug.Log(clips[(int)m_state].name);
 	}
 
     public void throwthething()
@@ -86,7 +84,6 @@ public class PlayerAnimator : MonoBehaviour
         m_state = animations.throwing;
 
         m_animationthingy.CrossFade(clips[(int)m_state].name, 0.1f);
-        Debug.Log(clips[(int)m_state].name);
     }
 
     void flipper()

@@ -34,14 +34,14 @@ public class princessAnimator : MonoBehaviour
     void Update()
     {
         flipper();
-
+        
         switch(velocityGiver.State)
         {
             case Throwable.states.carry:
                 m_state = animations.carried;
                 break;
             case Throwable.states.airborn:
-                m_state = animations.idle;
+                m_state = animations.carried;
                 break;
             case Throwable.states.nope:
                 if(Mathf.Abs(velocityGiver.Velocity.x) > 0.0f)
@@ -55,7 +55,7 @@ public class princessAnimator : MonoBehaviour
                 break;
             default:
                 break;
-        };
+        }
         m_animationthingy.CrossFade(clips[(int)m_state].name, 0.1f);
     }
 
