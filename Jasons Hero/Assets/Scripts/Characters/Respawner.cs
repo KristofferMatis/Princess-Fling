@@ -10,7 +10,7 @@ public class Respawner : MonoBehaviour
 	Transform m_PrincessTransform;
 
 	const float MIN_DISTANCE = 5.0f;
-	public const float AMOUNT_TO_MOVE_OVER = 5.0f;
+	public const float AMOUNT_TO_MOVE_OVER = 25.0f;
 
 	bool m_IsPrincess;
 
