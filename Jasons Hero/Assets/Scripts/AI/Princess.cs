@@ -12,7 +12,6 @@ public class Princess : Throwable
 		m_Weight = 1.4f;
 	}
 
-
 	public override Thrower BeingCarriedBy
 	{
 		get { return BeingCarriedBy; }
@@ -49,5 +48,11 @@ public class Princess : Throwable
 	public Thrower getLastThrower ()
 	{
 		return  LastThrower;
+	}
+
+	public override void Reset ()
+	{
+		base.Reset ();
+		Camera.main.gameObject.GetComponent<CameraController>().setPosition(m_OriginalPosition);
 	}
 }

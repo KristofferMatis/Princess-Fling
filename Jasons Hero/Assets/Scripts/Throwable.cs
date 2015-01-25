@@ -31,6 +31,8 @@ public class Throwable : MonoBehaviour
 
 	public float m_Weight = 1.0f;
 
+	protected Vector3 m_OriginalPosition;
+
     Thrower m_Thrower = null;
 
     const float VELOCITY_LOSS = 0.75f;
@@ -61,6 +63,8 @@ public class Throwable : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
 
         m_Thrower = gameObject.GetComponent<Thrower>();
+
+		m_OriginalPosition = transform.position;
 	}
 
 	// Update is called once per frame
@@ -207,4 +211,10 @@ public class Throwable : MonoBehaviour
 
         changeState(states.nope);
     }
+
+	public virtual void Reset ()
+	{
+		transform.position = m_OriginalPosition;
+		m_Velocity = Vector2.zero;
+	}
 }

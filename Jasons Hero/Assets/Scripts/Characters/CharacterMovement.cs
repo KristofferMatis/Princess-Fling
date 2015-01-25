@@ -25,6 +25,7 @@ public class CharacterMovement : Throwable
 
     public bool IsCarryingOBJ = false;
 
+
 	protected override void Start ()
 	{
 		base.Start ();
@@ -55,6 +56,7 @@ public class CharacterMovement : Throwable
         m_Timer = 0.0f;
 
 		//Flung sound for knight
+
     }
 
     public void stun()
@@ -133,5 +135,12 @@ public class CharacterMovement : Throwable
         }
 
 		m_Controller.Move (m_Velocity);
+	}
+
+	public override void Reset ()
+	{
+		m_Throw.drop();
+		base.Reset ();
+		m_Velocity = Vector3.zero;
 	}
 }
