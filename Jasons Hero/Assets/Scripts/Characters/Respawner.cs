@@ -54,7 +54,12 @@ public class Respawner : MonoBehaviour
 		m_AddToRespawnArea = amountToMoveOver;
 
 		//REMOVE CHARACTER
-		renderer.enabled = false;
+		if (m_Thrower != null)
+		{
+			m_Thrower.drop();
+		}
+
+		transform.position = new Vector2 (float.MaxValue / 2.0f, 0.0f);
 	}
 
 	//Respawn this character
@@ -78,11 +83,11 @@ public class Respawner : MonoBehaviour
 
 		//Respawn
 		transform.position = chosenPoint;
-		renderer.enabled = true;
 
-		if (m_Thrower != null)
+		Throwable temp = gameObject.GetComponent<Throwable> ();
+		if(temp != null)
 		{
-			m_Thrower.drop();
+			temp.Velocity = Vector2.zero;
 		}
 	}
 
