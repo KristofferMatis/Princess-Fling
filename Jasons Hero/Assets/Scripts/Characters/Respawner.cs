@@ -17,6 +17,8 @@ public class Respawner : MonoBehaviour
 
 	bool m_IsPrincess;
 
+    public Transform i_DeadPlace;
+
 	//Load princess position
 	void Start ()
 	{
@@ -59,7 +61,7 @@ public class Respawner : MonoBehaviour
 			m_Thrower.drop();
 		}
 
-		transform.position = new Vector2 (float.MaxValue / 2.0f, 0.0f);
+        transform.position = i_DeadPlace.position;
 	}
 
 	//Respawn this character
