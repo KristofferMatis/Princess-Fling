@@ -99,6 +99,8 @@ public class Thrower : MonoBehaviour
 
     void onPickUp(Throwable pickedUp)
     {
+		//pick up sound
+
         m_BeingCarried = pickedUp;
         m_BeingCarried.changeState(Throwable.states.carry);
         m_BeingCarried.transform.parent = transform;
@@ -111,6 +113,9 @@ public class Thrower : MonoBehaviour
 
     void onThrow()
     {
+		//Throw sound
+
+
         m_BeingCarried.Velocity = InputManager.getLeftStick(i_Player).normalized * THROW_POWER;
         m_BeingCarried.changeState(Throwable.states.airborn);
         m_BeingCarried.transform.parent = null;

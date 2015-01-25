@@ -10,6 +10,8 @@ public class Door : MonoBehaviour {
 		if (other.name == "Princess")
 		{
 			other.transform.position = m_Goto.position;
+
+			//Door sound
 		}
 	}
 }

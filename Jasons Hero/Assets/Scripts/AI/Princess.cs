@@ -28,6 +28,8 @@ public class Princess : Throwable
     {
 		if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f))
 		{
+			//Walk
+
 			if (transform.position.x > 0.5f)
 			{
 				m_Controller.SimpleMove(Vector3.left * SPEED * Time.deltaTime);
@@ -39,6 +41,8 @@ public class Princess : Throwable
 				return;
 			}
 		}
+		//Airborne movement
+
         m_Controller.SimpleMove(Vector3.zero);
     }
 

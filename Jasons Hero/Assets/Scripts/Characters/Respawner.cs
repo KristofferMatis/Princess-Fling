@@ -62,6 +62,8 @@ public class Respawner : MonoBehaviour
 		}
 
         transform.position = i_DeadPlace.position;
+
+		//Play sound depending on player or princess
 	}
 
 	//Respawn this character
