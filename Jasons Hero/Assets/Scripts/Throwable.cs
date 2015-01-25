@@ -29,6 +29,8 @@ public class Throwable : MonoBehaviour
     const string DEFAULT_LAYER = "Throwable";
     const string AIRBORNE_LAYER = "Airborne";
 
+	public float m_Weight = 1.0f;
+
     Thrower m_Thrower = null;
 
     const float VELOCITY_LOSS = 0.75f;

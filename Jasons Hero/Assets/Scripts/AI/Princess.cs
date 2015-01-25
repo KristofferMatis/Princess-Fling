@@ -6,6 +6,13 @@ public class Princess : Throwable
 	Thrower LastThrower;
 
 	const float SPEED = 500.0f;
+
+	void Awake ()
+	{
+		m_Weight = 1.4f;
+	}
+
+
 	public override Thrower BeingCarriedBy
 	{
 		get { return BeingCarriedBy; }

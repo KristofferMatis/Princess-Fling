@@ -12,6 +12,8 @@ public class CharacterMovement : Throwable
     const float FLOAT_POWER_LOSS = 1.7f;
     float m_CurrentFloatPower = FLOAT_POWER;
 
+	Thrower m_Throw;
+
 	public Players m_Player;
 
     bool m_IsHoldingA = false;
@@ -22,12 +24,12 @@ public class CharacterMovement : Throwable
 	int m_RaycastMask = -1;
 
     public bool IsCarryingOBJ = false;
-    const float PENALTY = 1.5f;
 
 	protected override void Start ()
 	{
 		base.Start ();
 		m_RaycastMask = ~LayerMask.GetMask ("Throwable");
+		m_Throw = GetComponent<Thrower>();
 	}
 
     protected override void carry()
@@ -65,7 +67,6 @@ public class CharacterMovement : Throwable
         //    m_Timer -= Time.deltaTime;
         //    return;
         //}
-
         if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
         {
             //Hit jump
@@ -77,7 +78,7 @@ public class CharacterMovement : Throwable
                 }
                 else
                 {
-                    m_Velocity.y = JUMPING_SPEED / PENALTY;
+					m_Velocity.y = JUMPING_SPEED / m_Throw.m_BeingCarried.m_Weight;
                 }
                 m_IsHoldingA = true;
                 return;
@@ -90,7 +91,7 @@ public class CharacterMovement : Throwable
             }
             else
             {
-                m_Velocity.x = InputManager.getLeftStick(m_Player).x * Time.deltaTime * WALKING_SPEED / (PENALTY*2.0f);
+				m_Velocity.x = InputManager.getLeftStick(m_Player).x * Time.deltaTime * WALKING_SPEED / (m_Throw.m_BeingCarried.m_Weight * 2.0f);
             }
         }
         //Airborne
@@ -112,7 +113,7 @@ public class CharacterMovement : Throwable
                     }
                     else
                     {
-                        m_Velocity.y += m_CurrentFloatPower / PENALTY * Time.deltaTime;
+						m_Velocity.y += m_CurrentFloatPower / m_Throw.m_BeingCarried.m_Weight * Time.deltaTime;
                     }
                     m_CurrentFloatPower -= FLOAT_POWER_LOSS * Time.deltaTime;
                 }
@@ -125,7 +126,7 @@ public class CharacterMovement : Throwable
             }
             else
             {
-                m_Velocity.x = InputManager.getLeftStick(m_Player).x * Time.deltaTime * AIRBORNE_CONTROL/ PENALTY;
+				m_Velocity.x = InputManager.getLeftStick(m_Player).x * Time.deltaTime * AIRBORNE_CONTROL/ m_Throw.m_BeingCarried.m_Weight;
             }
         }
 

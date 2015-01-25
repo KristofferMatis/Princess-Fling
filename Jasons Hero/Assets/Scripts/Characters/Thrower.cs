@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(CharacterMovement))]
@@ -9,7 +9,7 @@ public class Thrower : MonoBehaviour
     const string DEFAULT_LAYER = "Thrower";
     ThrowableDetector m_Detector;
 
-    Throwable m_BeingCarried = null;
+    public Throwable m_BeingCarried = null;
 
     const float THROW_POWER = 0.8f;
     const float IGNORE_COLLISION_PERIOD = 500.25f;
