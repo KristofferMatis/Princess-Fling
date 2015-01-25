@@ -3,13 +3,13 @@ using System.Collections;
 
 public class CharacterMovement : Throwable 
 {
-	const float WALKING_SPEED = 18.0f;
+	const float WALKING_SPEED = 22.0f;
     const float JUMPING_SPEED = 0.45f;
     const float AIRBORNE_CONTROL = 9.0f;
     const float GRAVITY = 1.1f;
 
     const float FLOAT_POWER = 1.1f;
-    const float FLOAT_POWER_LOSS = 1.2f;
+    const float FLOAT_POWER_LOSS = 1.7f;
     float m_CurrentFloatPower = FLOAT_POWER;
 
 	public Players m_Player;
@@ -22,7 +22,7 @@ public class CharacterMovement : Throwable
 	int m_RaycastMask = -1;
 
     public bool IsCarryingOBJ = false;
-    const float PENALTY = 2.0f;
+    const float PENALTY = 1.5f;
 
 	protected override void Start ()
 	{

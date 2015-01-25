@@ -186,8 +186,20 @@ public class Throwable : MonoBehaviour
 
         if (temp != null)
         {
-            temp.changeState(states.airborn);
-            temp.Velocity = m_Velocity * VELOCITY_LOSS;
+            CharacterMovement tempy = temp as CharacterMovement;
+
+            if (tempy == null)
+            {
+                temp.changeState(states.airborn);
+                temp.Velocity = m_Velocity * VELOCITY_LOSS;
+            }
+            else
+            {
+                tempy.changeState(states.airborn);
+
+
+                tempy.Velocity = new Vector2(m_Velocity.x, Mathf.Abs(m_Velocity.y)) * VELOCITY_LOSS;
+            }
         }
             
 
