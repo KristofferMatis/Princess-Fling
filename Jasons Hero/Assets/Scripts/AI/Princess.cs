@@ -9,7 +9,12 @@ public class Princess : Throwable
 	public override Thrower BeingCarriedBy
 	{
 		get { return BeingCarriedBy; }
-		set { m_BeingCarriedBy = value; LastThrower = value;}
+		set { m_BeingCarriedBy = value;
+			if (m_BeingCarriedBy != null)
+			{
+				LastThrower = m_BeingCarriedBy;
+			}
+		}
 	}
 
     protected override void nope()

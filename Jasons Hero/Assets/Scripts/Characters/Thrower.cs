@@ -12,7 +12,7 @@ public class Thrower : MonoBehaviour
     Throwable m_BeingCarried = null;
 
     const float THROW_POWER = 0.8f;
-    const float IGNORE_COLLISION_PERIOD = 0.25f;
+    const float IGNORE_COLLISION_PERIOD = 500.25f;
 
     CharacterMovement m_Movement;
 
