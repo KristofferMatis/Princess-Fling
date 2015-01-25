@@ -25,12 +25,17 @@ public class CharacterMovement : Throwable
 
     public bool IsCarryingOBJ = false;
 
+	AudioSource m_Audio;
+	public AudioClip[] m_ThrownClips;
+	public AudioClip[] m_JumpClips;
 
 	protected override void Start ()
 	{
 		base.Start ();
 		m_RaycastMask = ~LayerMask.GetMask ("Throwable");
 		m_Throw = GetComponent<Thrower>();
+		m_Audio = GetComponent<AudioSource>();
+
 	}
 
     protected override void carry()
@@ -54,9 +59,7 @@ public class CharacterMovement : Throwable
     {
         base.onAirborn();
         m_Timer = 0.0f;
-
-		//Flung sound for knight
-
+		m_Audio.PlayOneShot (m_ThrownClips[UnityEngine.Random.Range(0, m_ThrownClips.Length)]);
     }
 
     public void stun()
@@ -76,6 +79,8 @@ public class CharacterMovement : Throwable
             //Hit jump
             if (InputManager.getJumpDown(m_Player))
             {
+				m_Audio.PlayOneShot (m_JumpClips[UnityEngine.Random.Range(0, m_JumpClips.Length)]);
+
                 if (!IsCarryingOBJ)
                 {
                     m_Velocity.y = JUMPING_SPEED;

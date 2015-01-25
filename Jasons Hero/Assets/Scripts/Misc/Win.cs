@@ -5,6 +5,7 @@ public class Win : MonoBehaviour
 {
 	GUITexture m_Texture;
 	public Texture m_WinTexture;
+	AudioSource m_Audio;
 
 	Throwable[] m_AllThrowables;
 
@@ -15,6 +16,7 @@ public class Win : MonoBehaviour
 		m_Texture = GetComponentInParent<GUITexture>();
 		m_Texture.enabled = false;
 		m_AllThrowables = Object.FindObjectsOfType<Throwable> ();
+		m_Audio = GetComponent<AudioSource>();
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -22,6 +24,7 @@ public class Win : MonoBehaviour
 		if (other.name == "Princess")
 		{
 			//Play sound
+			m_Audio.PlayOneShot(m_Audio.clip);
 
 			m_Points++;
 
