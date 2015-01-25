@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
 	//Followed enemy
 	public Transform m_FollowedTransform;
 	const float LERP_SPEED_PRE_DELTA = 1.0f;
-	const float MIN_DISTANCE_TO_ZOOM_OUT = 12.0f;
+	const float MIN_DISTANCE_TO_ZOOM_OUT = 13.0f;
 
 	void Start ()
 	{
