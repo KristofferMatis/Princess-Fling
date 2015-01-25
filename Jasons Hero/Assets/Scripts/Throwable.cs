@@ -10,6 +10,11 @@ public class Throwable : MonoBehaviour
 		carry,
 		nope
 	};
+    public states State
+    {
+        get { return m_State; }
+    }
+
 
 	protected CharacterController m_Controller;
 
