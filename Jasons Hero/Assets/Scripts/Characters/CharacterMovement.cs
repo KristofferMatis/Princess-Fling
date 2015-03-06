@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterMovement : Throwable 
+public class CharacterMovement : Throwable
 {
+	#region old
 	const float WALKING_SPEED = 22.0f;
     const float JUMPING_SPEED = 0.45f;
     const float AIRBORNE_CONTROL = 9.0f;
@@ -32,6 +33,49 @@ public class CharacterMovement : Throwable
 	bool m_WasGrounded = false;
 
 	public bool stop = true;
+#endregion
+
+	enum DashTypes
+	{
+		InstantStop,
+		PlayerStop,
+		PlayerStopWithPenalty,
+        FullControl
+	};
+
+	bool m_IsDashing = false;
+	DashTypes m_DashType = DashTypes.PlayerStop;
+    Vector2 m_DashDirection = Vector2.zero;
+    const float DASH_SPEED = 50.0f;
+    const float DASH_DIST = 10.0f;
+    float m_Distance = 0.0f;
+
+	protected void dashPlayerStop ()
+	{
+        m_Controller.Move(m_DashDirection * Time.deltaTime * DASH_SPEED);
+
+        m_Distance += (m_DashDirection * Time.deltaTime * DASH_SPEED).magnitude;
+
+        if(m_Distance >= DASH_DIST)
+        {
+            exitDash();
+        }
+	}
+
+	protected void dashPlayerStopWithPenalty ()
+	{
+
+	}
+
+	protected void dashInstantStop ()
+	{
+
+	}
+
+    protected void dashFullControl()
+    {
+
+    }
 
 	protected override void Start ()
 	{
@@ -69,13 +113,56 @@ public class CharacterMovement : Throwable
         m_Timer = STUN_TIME;
     }
 
+    protected void exitDash()
+    {
+        m_IsDashing = false;
+        m_Distance = 0.0f;
+        m_Velocity.x = m_DashDirection.x * 3.0f;
+        m_Velocity.y = m_DashDirection.y / 3.0f;
+    }
+
     protected override void nope()
     {
         if (stop)
 			return;
 
-        if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
+        if (m_IsDashing)
         {
+            switch (m_DashType)
+            {
+                case DashTypes.InstantStop:
+                    dashInstantStop();
+                    break;
+                case DashTypes.PlayerStop:
+                    dashPlayerStop();
+                    break;
+                case DashTypes.PlayerStopWithPenalty:
+                    dashPlayerStopWithPenalty();
+                    break;
+                case DashTypes.FullControl:
+                    dashFullControl();
+                    break;
+            };
+
+            if (InputManager.getDashUp(m_Player))
+            {
+                exitDash();
+            }
+
+            return;
+        }
+
+        if (InputManager.getDashDown(m_Player))
+        {
+            m_DashDirection = InputManager.getLeftStick(m_Player);
+            m_DashDirection.Normalize();
+            m_IsDashing = true;
+            return;
+        }
+
+        if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
+        {//grounded
+
 			if (!m_WasGrounded)
 			{
 				m_Audio.PlayOneShot (m_LandClips[UnityEngine.Random.Range(0, m_LandClips.Length)]);
