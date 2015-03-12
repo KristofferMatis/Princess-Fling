@@ -79,6 +79,7 @@ public class Throwable : MonoBehaviour
 	// Update is called once per frame
     protected virtual void Update() 
 	{
+		transform.position = new Vector3 (transform.position.x, transform.position.y, 0.0f);
 		switch(m_State)
         {
             case states.airborn:

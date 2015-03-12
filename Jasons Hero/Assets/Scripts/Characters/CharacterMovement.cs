@@ -35,16 +35,17 @@ public class CharacterMovement : Throwable
 	public bool stop = true;
 #endregion
 
-	enum DashTypes
+	public enum DashTypes
 	{
+		None,
 		InstantStop,
-		PlayerStop,
-		PlayerStopWithPenalty,
+		FullControlInfinity,
         FullControl
 	};
 
+	bool canDash = true;
 	bool m_IsDashing = false;
-	DashTypes m_DashType = DashTypes.PlayerStop;
+	public DashTypes m_DashType = DashTypes.InstantStop;
     Vector2 m_DashDirection = Vector2.zero;
     const float DASH_SPEED = 50.0f;
     const float DASH_DIST = 10.0f;
@@ -62,19 +63,34 @@ public class CharacterMovement : Throwable
         }
 	}
 
-	protected void dashPlayerStopWithPenalty ()
+	protected void FullControlInfinity ()
 	{
-
-	}
-
-	protected void dashInstantStop ()
-	{
-
+		m_DashDirection = InputManager.getLeftStick(m_Player);
+		m_DashDirection.Normalize();
+		
+		m_Controller.Move(m_DashDirection * Time.deltaTime * DASH_SPEED);
+		
+		//m_Distance += (m_DashDirection * Time.deltaTime * DASH_SPEED).magnitude;
+		
+		if(m_Distance >= DASH_DIST)
+		{
+			exitDash();
+		}
 	}
 
     protected void dashFullControl()
     {
+		m_DashDirection = InputManager.getLeftStick(m_Player);
+		m_DashDirection.Normalize();
 
+		m_Controller.Move(m_DashDirection * Time.deltaTime * DASH_SPEED);
+		
+		m_Distance += (m_DashDirection * Time.deltaTime * DASH_SPEED).magnitude;
+		
+		if(m_Distance >= DASH_DIST)
+		{
+			exitDash();
+		}
     }
 
 	protected override void Start ()
@@ -131,13 +147,10 @@ public class CharacterMovement : Throwable
             switch (m_DashType)
             {
                 case DashTypes.InstantStop:
-                    dashInstantStop();
+				dashPlayerStop();
                     break;
-                case DashTypes.PlayerStop:
-                    dashPlayerStop();
-                    break;
-                case DashTypes.PlayerStopWithPenalty:
-                    dashPlayerStopWithPenalty();
+			case DashTypes.FullControlInfinity:
+				FullControlInfinity();
                     break;
                 case DashTypes.FullControl:
                     dashFullControl();
@@ -152,17 +165,20 @@ public class CharacterMovement : Throwable
             return;
         }
 
-        if (InputManager.getDashDown(m_Player))
-        {
-            m_DashDirection = InputManager.getLeftStick(m_Player);
-            m_DashDirection.Normalize();
-            m_IsDashing = true;
-            return;
-        }
-
+		if(canDash && m_DashType != DashTypes.None)
+		{
+	        if (InputManager.getDashDown(m_Player))
+	        {
+	            m_DashDirection = InputManager.getLeftStick(m_Player);
+	            m_DashDirection.Normalize();
+	            m_IsDashing = true;
+				canDash = false;
+	            return;
+	        }
+		}
         if (m_Controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 1.0f, m_RaycastMask))
         {//grounded
-
+			canDash = true;
 			if (!m_WasGrounded)
 			{
 				m_Audio.PlayOneShot (m_LandClips[UnityEngine.Random.Range(0, m_LandClips.Length)]);
