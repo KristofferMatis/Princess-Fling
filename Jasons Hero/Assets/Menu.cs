@@ -9,12 +9,12 @@ public class Menu : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.Keypad2))
+		if(Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
    		{
 			Application.LoadLevel(Level_For_2);
 		}
 
-		if(Input.GetKeyDown(KeyCode.Keypad4))
+		if(Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			Application.LoadLevel(Level_For_4);
 		}
