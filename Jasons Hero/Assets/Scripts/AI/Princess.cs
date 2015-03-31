@@ -9,9 +9,20 @@ public class Princess : Throwable
 
 	public AudioClip[] m_Clips;
 
+	float m_ClipTimer = 0.0f;
+
 	void Awake ()
 	{
 		m_Weight = 1.4f;
+	}
+
+	protected override void Update ()
+	{
+		base.Update ();
+		if (m_ClipTimer > 0.0f)
+		{
+			m_ClipTimer -= Time.deltaTime;
+		}
 	}
 
 	public override Thrower BeingCarriedBy
@@ -28,7 +39,12 @@ public class Princess : Throwable
 	protected override void onAirborn()
 	{
 		base.onAirborn ();
-		m_Audio.PlayOneShot (m_Clips[UnityEngine.Random.Range(0, m_Clips.Length - 1)]);
+		
+		if (m_ClipTimer <= 0.0f)
+		{
+			m_ClipTimer = 1.0f;
+			m_Audio.PlayOneShot (m_Clips[UnityEngine.Random.Range(0, m_Clips.Length)]);
+		}
 	}
 
     protected override void nope()

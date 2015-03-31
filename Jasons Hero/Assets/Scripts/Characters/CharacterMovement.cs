@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CharacterMovement : Throwable
@@ -51,6 +51,8 @@ public class CharacterMovement : Throwable
     const float DASH_DIST = 10.0f;
     float m_Distance = 0.0f;
 
+	float m_ClipTimer = 0.0f;
+
 	protected void dashPlayerStop ()
 	{
         m_Controller.Move(m_DashDirection * Time.deltaTime * DASH_SPEED);
@@ -93,6 +95,16 @@ public class CharacterMovement : Throwable
 		}
     }
 
+	protected override void Update ()
+	{
+		base.Update ();
+
+		if (m_ClipTimer > 0.0f)
+		{
+			m_ClipTimer -= Time.deltaTime;
+		}
+	}
+
 	protected override void Start ()
 	{
 		base.Start ();
@@ -120,8 +132,14 @@ public class CharacterMovement : Throwable
     protected override void onAirborn()
     {
         base.onAirborn();
-        m_Timer = 0.0f;
-		m_Audio.PlayOneShot (m_ThrownClips[UnityEngine.Random.Range(0, m_ThrownClips.Length)]);
+
+		if (m_ClipTimer <= 0.0f)
+		{
+			m_Audio.PlayOneShot (m_ThrownClips[UnityEngine.Random.Range(0, m_ThrownClips.Length)]);
+			m_ClipTimer = 1.0f;
+		}
+
+		m_Timer = 0.0f;
     }
 
     public void stun()

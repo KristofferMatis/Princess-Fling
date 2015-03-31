@@ -161,9 +161,11 @@ public class Throwable : MonoBehaviour
 
     protected virtual void onExitAirborn()
     {
-        m_Velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer(DEFAULT_LAYER);
-    }
+		Camera.main.GetComponent<CameraController> ().CameraShake (m_Velocity * m_Weight);
+		m_Velocity = Vector2.zero;
+
+	}
 
     protected virtual void onExitCarry()
     {

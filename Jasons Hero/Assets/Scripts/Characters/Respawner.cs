@@ -125,4 +125,13 @@ public class Respawner : MonoBehaviour
 			}
 		}
 	}
+
+	public bool IsAlive()
+	{
+		if (m_Timer == -1.0f)
+		{
+			return true;
+		}
+		return false;
+	}
 }
