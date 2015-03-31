@@ -64,7 +64,7 @@ public class CameraController : MonoBehaviour {
 		{
 			if (m_Players[i].IsAlive())
 			{
-				float playerDist = Vector3.Distance (transform.position, m_Players[i].transform.position) * 0.5f;
+				float playerDist = Vector3.Distance (transform.position, m_Players[i].transform.position) * 0.65f;
 				
 				if (distance < playerDist)
 				{
