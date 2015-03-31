@@ -8,8 +8,8 @@ public class CameraController : MonoBehaviour {
 	const float LERP_SPEED_PRE_DELTA = 1.0f;
 	const float ZOOM_LERP_SPEED_PRE_DELTA = 4.0f;
 	const float MIN_DISTANCE_TO_ZOOM_OUT = 15.0f;
-	const float SHAKEAMOUNT = 0.5f;
-	const float SHAKETIMER = 0.25f;
+	const float SHAKEAMOUNT = 0.4f;
+	const float SHAKETIMER = 0.2f;
 	float m_ShakeTimer = 0.0f;
 	Vector3 m_ShakeDirection;
 	Vector3 m_Velocity;
@@ -48,9 +48,9 @@ public class CameraController : MonoBehaviour {
 		if (m_ShakeTimer > 0.0f)
 		{
 			m_ShakeTimer -= Time.deltaTime;
-			float shakeAmount = SHAKEAMOUNT * m_ShakeTimer / SHAKETIMER * m_Velocity.magnitude;
+			float shakeAmount = SHAKEAMOUNT * m_ShakeTimer / SHAKETIMER;
 			m_ShakeDirection = m_Velocity * shakeAmount;
-			m_ShakeDirection += new Vector3(UnityEngine.Random.Range(0.0f,shakeAmount), UnityEngine.Random.Range(0.0f,shakeAmount), 0.0f);
+			m_ShakeDirection += new Vector3(UnityEngine.Random.Range(0.0f,shakeAmount), UnityEngine.Random.Range(0.0f,shakeAmount), 0.0f) * m_Velocity.magnitude;
 			pos += m_ShakeDirection;
 		}
 		setPosition (pos);
@@ -95,9 +95,14 @@ public class CameraController : MonoBehaviour {
 
 	public void CameraShake (Vector2 force)
 	{
+		if (force.magnitude < 1.0f)
+		{
+			return;
+		}
+
 		if (m_ShakeTimer <= 0.0f)
 		{
-			m_ShakeTimer = SHAKETIMER;
+			m_ShakeTimer = SHAKETIMER * force.magnitude;
 		}
 		m_Velocity = new Vector3 (force.x, force.y, 0.0f);
 	}

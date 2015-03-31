@@ -53,6 +53,11 @@ public class CharacterMovement : Throwable
 
 	float m_ClipTimer = 0.0f;
 
+	void Awake ()
+	{
+		m_Weight = 1.2f;
+	}
+
 	protected void dashPlayerStop ()
 	{
         m_Controller.Move(m_DashDirection * Time.deltaTime * DASH_SPEED);
